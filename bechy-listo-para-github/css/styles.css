@@ -1,0 +1,69 @@
+:root {
+  color-scheme: light;
+  --yellow: #ffd93d;
+  --yellow-soft: #f6e6a1;
+  --sky: #86cdee;
+  --ink: #18334d;
+  --white: #fffaf0;
+  --muted: #c3cede;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--sky); scroll-behavior: smooth; scroll-padding-top: 24px; }
+body { margin: 0; min-height: 100vh; color: var(--ink); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.7; isolation: isolate; }
+main, .topbar, .footer { position: relative; z-index: 1; }
+main { width: min(1200px, 100%); margin-inline: auto; }
+a { color: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 3px solid #163754; outline-offset: 6px; }
+.message-card :focus-visible { outline-color: var(--yellow); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip-link { position: fixed; top: 12px; left: 12px; z-index: 10; padding: 12px; background: #fff; transform: translateY(-180%); }
+.skip-link:focus { transform: none; }
+.topbar { max-width: 1280px; margin: auto; padding: 16px 20px; display: flex; justify-content: flex-end; min-height: 76px; }
+.motion-toggle { background: #ffffff38; color: var(--ink); border: 1px solid #18334d66; border-radius: 30px; padding: 10px 14px; cursor: pointer; font-size: 11px; min-height: 44px; }
+.opening { display: grid; align-items: start; gap: 12px; padding: 8px 16px 0; }
+.message-card { position: relative; z-index: 1; width: min(520px, 100%); margin: 0 auto; padding: 36px 24px; border: 1px solid #f6e6a14d; border-radius: 24px; background: linear-gradient(140deg, #243a56f5, #15263df5); box-shadow: 0 22px 55px #254f7326; text-align: center; backdrop-filter: blur(12px); }
+h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; text-wrap: balance; }
+em { color: var(--yellow-soft); font-weight: 400; }
+.message-card h1 { color: var(--yellow-soft); font-size: clamp(3.2rem, 10vw, 4.5rem); line-height: 1.1; letter-spacing: -.035em; margin: 0 0 26px; }
+.button { display: inline-flex; align-items: center; justify-content: center; border: 1px solid #ffe886; border-radius: 100px; padding: 14px 28px; min-height: 52px; color: #202519; background: var(--yellow); font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 32px #ffd93d1c; transition: transform .2s, box-shadow .2s; }
+.button:hover { transform: translateY(-3px); box-shadow: 0 10px 36px #ffd93d36; }
+.button:active { transform: translateY(0); }
+.secret-message { padding-top: 28px; }
+.secret-message h2 { color: var(--white); font-size: clamp(1.65rem, 5.2vw, 2.5rem); line-height: 1.25; letter-spacing: -.025em; margin: 0; }
+.secret-message h2:focus { outline: none; }
+.secret-message h2:focus-visible { outline: 2px solid var(--yellow); }
+/* Original characters remain together underneath the card and supplied scene. */
+.cast { --character-scale: .30; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(820px, calc(100% - 40px)); margin: 4px auto 36px; }
+.character { min-width: 0; }
+.character-slot { position: relative; height: calc(410px * var(--character-scale)); }
+.character-art { position: absolute; width: 300px; height: 410px; top: 0; left: calc(50% - 150px); transform: scale(var(--character-scale)); transform-origin: center top; }
+.footer { margin: 0 24px; padding: 0 0 24px; text-align: center; color: #244a67; }
+.footer small { font-size: 10px; }
+.footer a { text-underline-offset: 3px; }
+.effects { position: fixed; inset: 0; overflow: hidden; z-index: 5; pointer-events: none; }
+.floating-love { position: absolute; bottom: -50px; left: var(--x); color: #6e2739; font-size: var(--size); animation: float-love var(--duration) ease-out forwards; user-select: none; }
+@keyframes float-love { 0% { opacity: 0; transform: translateY(0) rotate(-12deg); } 12% { opacity: .85; } 100% { opacity: 0; transform: translateY(calc(-100vh - 100px)) rotate(35deg); } }
+.confession-open .secret-message { animation: appear .6s ease-out both; }
+@keyframes appear { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@media (min-width: 360px) { .cast { --character-scale: .35; } }
+@media (min-width: 390px) { .cast { --character-scale: .38; } }
+@media (min-width: 430px) { .cast { --character-scale: .42; } }
+@media (min-width: 700px) {
+  .opening { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; padding-inline: 32px; min-height: 380px; }
+  .message-card { padding: 40px 28px; }
+  .cast { --character-scale: .55; }
+  .topbar { padding-inline: 32px; }
+}
+@media (min-width: 1000px) {
+  .opening { min-height: 470px; }
+  .cast { --character-scale: .65; margin-top: 0; }
+}
+html.motion-paused { scroll-behavior: auto; }
+html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after { animation-play-state: paused !important; transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
