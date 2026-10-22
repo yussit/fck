@@ -1,0 +1,9 @@
+BECHY - VERSION ACTUALIZADA
+
+Abre index.html junto con las carpetas css y js para ver la pagina.
+La vista previa del enlace dice Bechy / Abreme, sin revelar el mensaje.
+
+En GitHub: sube index.html y las carpetas css y js manteniendo sus nombres.
+Si usas la carpeta bechy-listo-para-github en el repositorio, reemplaza sus archivos ahi.
+No subas el ZIP directamente: primero descomprimelo.
+GitHub Pages: Settings > Pages > Deploy from a branch > main > /(root).
